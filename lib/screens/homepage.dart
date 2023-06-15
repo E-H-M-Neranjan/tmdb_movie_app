@@ -1,5 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tmdb_movie_app/models/movies_model.dart';
+import 'package:tmdb_movie_app/screens/movie_details.dart';
 import 'package:tmdb_movie_app/services/api_services.dart';
 
 class HomePage extends StatefulWidget {
@@ -53,28 +55,41 @@ class _HomePageState extends State<HomePage> {
                           childAspectRatio: 0.59,
                         ),
                         itemBuilder: (context, index) {
-                          return Column(
-                            children: [
-                              Flexible(
-                                child: Container(
-                                  decoration: BoxDecoration(
+                          return GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  CupertinoPageRoute(
+                                    builder: (context) => MovieDetails(
+                                      movie: movies[index],
+                                    ),
+                                  ));
+                            },
+                            child: Column(
+                              children: [
+                                Flexible(
+                                  child: Container(
+                                    decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(10),
                                       color: Colors.grey,
                                       image: DecorationImage(
-                                          fit: BoxFit.fitHeight,
-                                          image: NetworkImage(
-                                              "https://image.tmdb.org/t/p/w500${movies[index].posterpath}"))),
+                                        fit: BoxFit.fitHeight,
+                                        image: NetworkImage(
+                                            "https://image.tmdb.org/t/p/w500${movies[index].posterpath}"),
+                                      ),
+                                    ),
+                                  ),
                                 ),
-                              ),
-                              Text(
-                                movies[index].titel.toString(),
-                                style: const TextStyle(
-                                  overflow: TextOverflow.ellipsis,
-                                  fontWeight: FontWeight.w700,
-                                  color: Colors.black,
-                                ),
-                              )
-                            ],
+                                Text(
+                                  movies[index].titel.toString(),
+                                  style: const TextStyle(
+                                    overflow: TextOverflow.ellipsis,
+                                    fontWeight: FontWeight.w700,
+                                    color: Colors.black,
+                                  ),
+                                )
+                              ],
+                            ),
                           );
                         },
                       );
