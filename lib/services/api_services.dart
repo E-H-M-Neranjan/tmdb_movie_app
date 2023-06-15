@@ -5,7 +5,7 @@ import 'package:tmdb_movie_app/models/movie_details_model.dart';
 import 'package:tmdb_movie_app/models/movies_model.dart';
 
 class ApiService {
-  final apiKey = "api_key=42add497e4dddf5ff20a94a45e7dad20";
+  final apiKey = "YOUR_API_KEY";
   final popular = "https://api.themoviedb.org/3/movie/popular?";
 
   // >>>>>>>>>> get popular movies <<<<<<<<<<<<<
